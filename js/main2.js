@@ -80,15 +80,6 @@ function getOffer(index) {
     }
 }
 
-function getRandomValue(array) {
-    const randomIndex = getRandomCount(1, array.length);
-    const value = array[randomIndex];
-    return value
-}
-function getRandomCount(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
 
 fs.writeFileSync('data.txt', JSON.stringify(dataArray));
 http.createServer(function (req, res) {
