@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const countOffer = 25;
-const countComment = 6;
+const countComment = 6
 
 const RENGE_COMMENT = {
     min: 0,
@@ -36,11 +36,12 @@ const nameArray = [
     'Жанна'
 ];
 const dataArray = new Array(countOffer).fill(null).map((e, index)=>getOffer(index));
+const arrayComments = new Array(countOffer).fill(null).map((e, index)=>getComment());
 
 
 function getComment(){
     let comments = [];
-    for (let i = 0; i < getRandomCount(2, countComment); i++) {
+    for (let i = 0; i < getRandomCount(RENGE_COMMENT.min, RENGE_COMMENT.max); i++) {
         let comment = {
             id: i,
             avatar: getAvatar(countComment),
@@ -49,9 +50,11 @@ function getComment(){
         }
         comments.push(comment);
     }
+
     return comments;
 }
-getComment()
+
+
 function getRandomCount(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
@@ -69,8 +72,9 @@ function getAvatar(i) {
     return avatar
 }
 
+
 function getOffer(index) {
-    let commentaries = getComment(RENGE_COMMENT.min, RENGE_COMMENT.max);
+    let commentaries = getComment();
     return {
         id: index + 1,
         url: `./photos/${index + 1}.jpg`,
