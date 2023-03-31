@@ -95,7 +95,24 @@ http.createServer(function (req, res) {
     if(url ==='/photos') {
         const data = fs.readFileSync('data.txt', 'utf8');
         res.end(data);
-    }
+    }else if(url ==='/post') {
+        const dataOffer = fs.readFileSync('data.txt', 'utf8');
+        const dataOfferJSON = JSON.parse(dataOffer)
+        let responseString = '';
+        req.on("data", (data) => {
+            let stringData = data.toString('utf8');
+            let stringDataParse = JSON.parse(stringData);
+            stringDataParse.id = dataOfferJSON.length;
+
+            dataOfferJSON.push(stringDataParse);
+            console.log(dataOfferJSON);
+            fs.writeFileSync('data.txt', JSON.stringify(dataOfferJSON));
+
+            responseString = JSON.stringify(dataOfferJSON);
+        });
+        req.on('end', () => {
+            res.end(responseString);
+        });
     else {
         res.write('Wrong route');
         res.end();
