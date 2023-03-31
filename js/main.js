@@ -62,7 +62,7 @@ form.addEventListener('submit', async (e) => {
 async function formSubmit() {
     let newImageData = {
         id: 0,
-        src: imageBit,
+        url: imageBit,
         avatar: '',
         likes: 0,
         comments: 0,
